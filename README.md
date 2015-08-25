@@ -35,13 +35,11 @@ export PATH=$PATH:$GOPATH/bin
 Log out and back in or start a new shell session, then run the following
 
 ```
-cd vagrant-riak-mesos
-./setup-env.sh
+cd vagrant-riak-mesos && ./setup-env.sh
 ```
 
 Build the Riak Mesos Framework
 
 ```
-cd $GOPATH/src/github.com/basho-labs/riak-mesos
-make
+cd $GOPATH/src/github.com/basho-labs/riak-mesos && make
 ```
