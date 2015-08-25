@@ -35,6 +35,7 @@ export PATH=$PATH:$GOPATH/bin
 Log out and back in or start a new shell session, then run the following
 
 ```
+sudo -s
 cd vagrant-riak-mesos
 ./setup-env.sh
 ```

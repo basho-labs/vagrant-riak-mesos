@@ -34,3 +34,6 @@ apt-get -y upgrade > /dev/null
 apt-get -y install git bison mercurial autoconf
 bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
 gvm install go1.4
+
+# Debootstrap
+apt-get -y install debootstrap
