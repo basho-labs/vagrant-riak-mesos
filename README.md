@@ -20,7 +20,7 @@ cd vagrant-riak-mesos
 
 ## Build Environment
 
-Add the following to ~/.bashrc (or just run the commands per session)
+Add the following to `~/.bashrc` (or just run the commands per session)
 
 ```
 # Erlang
@@ -35,7 +35,6 @@ export PATH=$PATH:$GOPATH/bin
 Log out and back in or start a new shell session, then run the following
 
 ```
-sudo -s
 cd vagrant-riak-mesos
 ./setup-env.sh
 ```

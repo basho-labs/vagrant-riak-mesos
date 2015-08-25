@@ -10,12 +10,12 @@ go get -u github.com/golang/lint/golint
 go get golang.org/x/tools/cmd/goimports
 
 ### Download code and deps
-cd $GOPATH
-mkdir -p src/github.com/mesos
-mkdir -p src/github.com/basho-labs
-cd $GOPATH/src/github.com/
-git clone https://github.com/basho-labs/riak-mesos.git basho-labs/riak-mesos
-git clone https://github.com/mesos/mesos-go.git mesos/mesos-go
+mkdir -p $GOPATH/src/github.com/mesos
+mkdir -p $GOPATH/src/github.com/basho-labs
+rm -rf $GOPATH/src/github.com/basho-labs/riak-mesos
+rm -rf $GOPATH/src/github.com/mesos/mesos-go
+git clone https://github.com/basho-labs/riak-mesos.git $GOPATH/src/github.com/basho-labs/riak-mesos
+git clone https://github.com/mesos/mesos-go.git $GOPATH/src/github.com/mesos/mesos-go
 cd $GOPATH/src/github.com/mesos/mesos-go
 godep restore
 go build ./...
