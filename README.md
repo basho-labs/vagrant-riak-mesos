@@ -24,10 +24,10 @@ Add the following to ~/.bashrc (or just run the commands per session)
 
 ```
 # Erlang
-. ~/erlang/R16B02-basho8/activate
+. $HOME/erlang/R16B02-basho8/activate
 # Golang
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 gvm use go1.4
-export GOPATH=/gopath
+export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 ```
