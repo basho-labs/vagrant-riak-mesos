@@ -37,3 +37,8 @@ gvm install go1.4
 
 # Debootstrap
 apt-get -y install debootstrap
+
+# DCOS Prereq
+apt-get -y install python-pip
+apt-get -y install zip
+apt-get -y install s3cmd
