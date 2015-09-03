@@ -21,6 +21,9 @@ apt-get -y install lxc-docker
 apt-get -y update
 apt-get -y upgrade
 apt-get install -y build-essential autoconf libncurses5-dev openssl libssl-dev fop xsltproc unixodbc-dev libpam0g-dev
+
+mkdir -p $HOME/bin
+cd $HOME/bin
 curl -O https://raw.githubusercontent.com/spawngrid/kerl/master/kerl
 chmod a+x kerl
 ./kerl build git git://github.com/basho/otp.git OTP_R16B02_basho8 R16B02-basho8
@@ -44,14 +47,14 @@ apt-get -y install python-pip
 apt-get -y install zip
 apt-get -y install s3cmd
 
-cat >$HOME/.bashrc <<EOL
+cat >>$HOME/.bashrc <<EOL
 # Erlang
 . $HOME/erlang/R16B02-basho8/activate
 # Golang
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 gvm use go1.4
 export GOPATH=/mnt/go
-export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOPATH/bin:$HOME/bin
 EOL
 
 # TODO: change default mesos data directories
