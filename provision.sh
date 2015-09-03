@@ -14,13 +14,12 @@ apt-get -y install make git gcc g++ curl
 apt-get -y install python-dev libcppunit-dev libunwind8-dev autoconf autotools-dev libltdl-dev libtool autopoint libcurl4-openssl-dev libsasl2-dev
 apt-get -y install openjdk-7-jdk zookeeperd default-jre python-setuptools python-protobuf
 apt-get -y install libprotobuf-dev protobuf-compiler
-apt-get -y install erlang
 apt-get -y install mesos marathon
 apt-get -y install lxc-docker
 
 # Install Erlang
-apt-get -y update > /dev/null
-apt-get -y upgrade > /dev/null
+apt-get -y update
+apt-get -y upgrade
 apt-get install -y build-essential autoconf libncurses5-dev openssl libssl-dev fop xsltproc unixodbc-dev libpam0g-dev
 curl -O https://raw.githubusercontent.com/spawngrid/kerl/master/kerl
 chmod a+x kerl
@@ -30,10 +29,12 @@ chmod a+x kerl
 
 # Install Golang
 apt-get -y update
-apt-get -y upgrade > /dev/null
+apt-get -y upgrade
 apt-get -y install git bison mercurial autoconf
-bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+cd $HOME/ && bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 gvm install go1.4
+mkdir -p /mnt/go
 
 # Debootstrap
 apt-get -y install debootstrap
@@ -42,3 +43,15 @@ apt-get -y install debootstrap
 apt-get -y install python-pip
 apt-get -y install zip
 apt-get -y install s3cmd
+
+cat >$HOME/.bashrc <<EOL
+# Erlang
+. $HOME/erlang/R16B02-basho8/activate
+# Golang
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+gvm use go1.4
+export GOPATH=/mnt/go
+export PATH=$PATH:$GOPATH/bin
+EOL
+
+# TODO: change default mesos data directories
