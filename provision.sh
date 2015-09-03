@@ -47,14 +47,21 @@ apt-get -y install python-pip
 apt-get -y install zip
 apt-get -y install s3cmd
 
-cat >>$HOME/.bashrc <<EOL
-# Erlang
-. $HOME/erlang/R16B02-basho8/activate
-# Golang
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-gvm use go1.4
-export GOPATH=/mnt/go
-export PATH=$PATH:$GOPATH/bin:$HOME/bin
-EOL
+echo '# Erlang' >> $HOME/.bashrc
+echo '. $HOME/erlang/R16B02-basho8/activate' >> $HOME/.bashrc
+echo '# Golang' >> $HOME/.bashrc
+echo '[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"' >> $HOME/.bashrc
+echo 'gvm use go1.4' >> $HOME/.bashrc
+echo 'export GOPATH=/mnt/go' >> $HOME/.bashrc
+echo 'export PATH=$PATH:$GOPATH/bin:$HOME/.gvm/gos/go1.4/bin:$HOME/bin' >> $HOME/.bashrc
+
+# Fix permissions
+chown -R ubuntu /mnt/go
+chgrp -R ubuntu /mnt/go
+chown -R ubuntu $HOME
+chgrp -R ubuntu $HOME
 
 # TODO: change default mesos data directories
+mkdir -p /mnt/mesos
+echo "/mnt/mesos" > /etc/mesos-master/work_dir
+echo "/mnt/mesos" > /etc/mesos-slave/work_dir

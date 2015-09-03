@@ -9,6 +9,13 @@ vagrant up
 vagrant reload
 ```
 
+Log out and back in or start a new shell session, then run the following
+
+```
+sudo su ubuntu
+cd /vagrant && ./setup-env.sh
+```
+
 ## Ubuntu Usage
 
 ```
@@ -18,13 +25,13 @@ git clone https://github.com/basho-labs/vagrant-riak-mesos.git $HOME/vagrant-ria
 cd $HOME/vagrant-riak-mesos && ./provision.sh
 ```
 
-## Build Environment
-
-Log out and back in or start a new shell session, then run the following
+Reboot the machine, then run the following
 
 ```
 cd $HOME/vagrant-riak-mesos && ./setup-env.sh
 ```
+
+## Build Environment
 
 Build the Riak Mesos Framework
 
