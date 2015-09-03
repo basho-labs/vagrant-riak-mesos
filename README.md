@@ -12,6 +12,7 @@ vagrant reload
 ## Ubuntu Usage
 
 ```
+sudo apt-get install -y git
 sudo -s
 git clone https://github.com/basho-labs/vagrant-riak-mesos.git $HOME/vagrant-riak-mesos
 cd $HOME/vagrant-riak-mesos && ./provision.sh
