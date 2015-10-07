@@ -31,12 +31,29 @@ Reboot the machine, then run the following
 cd $HOME/vagrant-riak-mesos && ./setup-env.sh
 ```
 
-## Build Environment
-
-Build the Riak Mesos Framework
+## Build the Framework
 
 ```
 cd $GOPATH/src/github.com/basho-labs/riak-mesos && make
+```
+
+or for a faster build with lower RAM requirements:
+
+```
+cd $GOPATH/src/github.com/basho-labs/riak-mesos && TAGS=dev make
+```
+
+## Creating Native / Platform Specific Builds
+
+By default, the build process will include a Debian Ubuntu image in the binary to support multiple platforms using chroot. To build the framework without relying on chroot, everything can be built natively:
+
+```
+# Rebuild all Erlang artifacts
+cd $GOPATH/src/github.com/basho-labs/riak-mesos && TAGS='"rel native"' make rebuild_all_native
+# Recompile the framework only
+cd $GOPATH/src/github.com/basho-labs/riak-mesos && TAGS='"rel native"' make
+# Create packages in the `_build/` directory
+cd $GOPATH/src/github.com/basho-labs/riak-mesos && make package
 ```
 
 ## DCOS setup
