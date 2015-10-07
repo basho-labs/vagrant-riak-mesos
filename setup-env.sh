@@ -23,17 +23,10 @@ rm -rf $GOPATH/src/github.com/basho-labs/riak-mesos
 git clone https://github.com/basho-labs/riak-mesos.git $GOPATH/src/github.com/basho-labs/riak-mesos
 cd $GOPATH/src/github.com/basho-labs/riak-mesos && godep restore
 
-# Mesos go
-# Using Go1.5 this can be tricky... May need to use go1.4, create protos, then switch to go1.5 and repeat these steps
-gvm use go1.4
-export GOPATH=/mnt/go
-go get github.com/mesos/mesos-go
-go get github.com/gogo/protobuf/protoc-gen-gogo
-mkdir -p $GOPATH/src/github.com/mesos
+### Mesos Go
 rm -rf $GOPATH/src/github.com/mesos/mesos-go
 git clone https://github.com/mesos/mesos-go.git $GOPATH/src/github.com/mesos/mesos-go
-cd $GOPATH/src/github.com/mesos/mesos-go/mesosproto && make
-gvm use go1.5
-export GOPATH=/mnt/go
 go get github.com/gogo/protobuf/protoc-gen-gogo
-cd $GOPATH/src/github.com/mesos/mesos-go/mesosproto && make
+go get github.com/gogo/protobuf/protoc-gen-gogofast
+cd $GOPATH/src/github.com/mesos/mesos-go/mesosproto && \
+  protoc --proto_path=${GOPATH}/src:${GOPATH}/src/github.com/gogo/protobuf/protobuf:. --gogofast_out=. *.proto
