@@ -1,5 +1,6 @@
 #!/bin/bash
 export DEBIAN_FRONTEND=noninteractive
+export HOME=/home/ubuntu
 
 # Install mesos, marathon, zk, docker
 apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF
